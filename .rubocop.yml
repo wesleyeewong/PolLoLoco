@@ -1,14 +1,21 @@
 AllCops:
   NewCops: enable
+  Exclude:
+    - "/**/schema.rb"
+
+Layout/HashAlignment:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
 
-Metrics/MethodLength:
-  Enabled: false
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
 
-Metrics/PerceivedComplexity:
-  Enabled: false
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - "/**/migrate/*"
 
-Metrics/CyclomaticComplexity:
+
+Metrics:
   Enabled: false
