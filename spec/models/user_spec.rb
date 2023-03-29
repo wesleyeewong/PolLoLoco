@@ -18,8 +18,6 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   it "has valid factory" do
-    user = build(:user)
-
-    expect(user.valid?).to be(true)
+    expect(build(:user).valid?).to be(true)
   end
 end
