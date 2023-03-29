@@ -1,14 +1,14 @@
 AllCops:
   NewCops: enable
 
+Layout/HashAlignment:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
-Metrics/MethodLength:
-  Enabled: false
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
 
-Metrics/PerceivedComplexity:
-  Enabled: false
-
-Metrics/CyclomaticComplexity:
+Metrics:
   Enabled: false
