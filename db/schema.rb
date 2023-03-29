@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_29_173916) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_29_194131) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_173916) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_movements_on_slug", unique: true
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_plans_on_profile_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -37,5 +44,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_173916) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "plans", "profiles"
   add_foreign_key "profiles", "users"
 end
