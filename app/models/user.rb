@@ -15,4 +15,9 @@
 #  index_users_on_email  (email) UNIQUE
 #
 class User < ApplicationRecord
+  has_many :profiles
+
+  def default_profile
+    profiles.first
+  end
 end

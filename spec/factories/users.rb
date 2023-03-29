@@ -2,22 +2,21 @@
 
 # == Schema Information
 #
-# Table name: profiles
+# Table name: users
 #
 #  id         :bigint           not null, primary key
+#  email      :string           not null
 #  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :bigint           not null
 #
 # Indexes
 #
-#  index_profiles_on_user_id  (user_id)
+#  index_users_on_email  (email) UNIQUE
 #
-# Foreign Keys
-#
-#  fk_rails_...  (user_id => users.id)
-#
-class Profile < ApplicationRecord
-  belongs_to :user
+FactoryBot.define do
+  factory :user do
+    email { generate(:email) }
+    name { "George" }
+  end
 end

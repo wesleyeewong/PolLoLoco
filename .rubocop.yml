@@ -1,5 +1,7 @@
 AllCops:
   NewCops: enable
+  Exclude:
+    - "/**/schema.rb"
 
 Layout/HashAlignment:
   Enabled: false
@@ -9,6 +11,11 @@ Style/Documentation:
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - "/**/migrate/*"
+
 
 Metrics:
   Enabled: false
