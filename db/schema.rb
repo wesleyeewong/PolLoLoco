@@ -51,8 +51,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_202913) do
     t.decimal "weight_increments", precision: 8, scale: 3, default: "2.5", null: false
     t.integer "rep_increments", limit: 2, default: 1, null: false
     t.integer "set_increments", limit: 2, default: 1, null: false
+    t.bigint "profile_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_progressions_on_profile_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,4 +68,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_202913) do
   add_foreign_key "days", "plans"
   add_foreign_key "plans", "profiles"
   add_foreign_key "profiles", "users"
+  add_foreign_key "progressions", "profiles"
 end

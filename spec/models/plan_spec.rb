@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: plans
@@ -15,7 +17,7 @@
 #
 #  fk_rails_...  (profile_id => profiles.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Plan, type: :model do
 end

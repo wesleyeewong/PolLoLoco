@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: movements
@@ -13,6 +15,6 @@
 #
 FactoryBot.define do
   factory :movement do
-    slug { "barbell_squats" }
+    sequence :slug, %i[barbell_squats barbell_bench_presses barbell_deadlifts squats pushups].cycle
   end
 end

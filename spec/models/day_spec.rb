@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: days
@@ -15,7 +17,7 @@
 #
 #  fk_rails_...  (plan_id => plans.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Day, type: :model do
 end
