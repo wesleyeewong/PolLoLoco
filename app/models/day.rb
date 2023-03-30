@@ -2,18 +2,21 @@
 
 # == Schema Information
 #
-# Table name: users
+# Table name: days
 #
 #  id         :bigint           not null, primary key
-#  email      :string           not null
-#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  plan_id    :bigint           not null
 #
 # Indexes
 #
-#  index_users_on_email  (email) UNIQUE
+#  index_days_on_plan_id  (plan_id)
 #
-class User < ApplicationRecord
-  has_one :profile, dependent: :destroy
+# Foreign Keys
+#
+#  fk_rails_...  (plan_id => plans.id)
+#
+class Day < ApplicationRecord
+  belongs_to :plan
 end

@@ -2,22 +2,21 @@
 
 # == Schema Information
 #
-# Table name: users
+# Table name: movements
 #
 #  id         :bigint           not null, primary key
-#  email      :string           not null
-#  name       :string           not null
+#  slug       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 # Indexes
 #
-#  index_users_on_email  (email) UNIQUE
+#  index_movements_on_slug  (slug) UNIQUE
 #
 require "rails_helper"
 
-RSpec.describe User, type: :model do
+RSpec.describe Movement, type: :model do
   it "has valid factory" do
-    expect(build(:user).valid?).to be(true)
+    expect(build(:movement).valid?).to be(true)
   end
 end

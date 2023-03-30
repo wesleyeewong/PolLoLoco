@@ -22,8 +22,6 @@ require "rails_helper"
 
 RSpec.describe Profile, type: :model do
   it "has valid factory" do
-    profile = build(:profile)
-
-    expect(profile.valid?).to be(true)
+    expect(build(:profile).valid?).to be(true)
   end
 end
