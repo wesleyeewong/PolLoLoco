@@ -20,4 +20,5 @@
 require "rails_helper"
 
 RSpec.describe Plan, type: :model do
+  # TODO: Add specs later when needed
 end

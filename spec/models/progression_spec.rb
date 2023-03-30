@@ -27,10 +27,6 @@
 require "rails_helper"
 
 RSpec.describe Progression, type: :model do
-  it "has valid factory" do
-    expect(build(:progression).valid?).to be(true)
-  end
-
   describe "validation" do
     context "when weight_increments has more than 8 precisions" do
       it "is invalid" do

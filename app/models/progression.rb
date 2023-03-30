@@ -25,5 +25,9 @@
 #  fk_rails_...  (profile_id => profiles.id)
 #
 class Progression < ApplicationRecord
+  belongs_to :profile
+
+  has_many :movement_plans, dependent: :destroy
+
   validates :weight_increments, format: { with: /\A\d{1,5}(\.\d{1,3})?\z/ }
 end

@@ -22,4 +22,6 @@ class Profile < ApplicationRecord
   belongs_to :user
 
   has_one :plan, dependent: :destroy
+
+  has_many :progressions, dependent: :destroy
 end
