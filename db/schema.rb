@@ -10,16 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_30_160300) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_29_202913) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "blocks", force: :cascade do |t|
-    t.bigint "day_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["day_id"], name: "index_blocks_on_day_id"
-  end
 
   create_table "days", force: :cascade do |t|
     t.bigint "plan_id", null: false
@@ -28,18 +21,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_160300) do
     t.index ["plan_id"], name: "index_days_on_plan_id"
   end
 
-  create_table "movement_plans", force: :cascade do |t|
-    t.bigint "movement_id", null: false
-    t.bigint "progression_id", null: false
-    t.bigint "block_id", null: false
-    t.decimal "initial_weight", precision: 8, scale: 3, default: "1.0", null: false
-    t.integer "initial_reps", limit: 2, default: 1, null: false
-    t.integer "initial_sets", limit: 2, default: 1, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["block_id"], name: "index_movement_plans_on_block_id"
-    t.index ["movement_id"], name: "index_movement_plans_on_movement_id"
-    t.index ["progression_id"], name: "index_movement_plans_on_progression_id"
+  create_table "days_progressions", force: :cascade do |t|
+    t.bigint "day_id"
+    t.bigint "progression_id"
+    t.index ["day_id"], name: "index_days_progressions_on_day_id"
+    t.index ["progression_id"], name: "index_days_progressions_on_progression_id"
   end
 
   create_table "movements", force: :cascade do |t|
@@ -73,8 +59,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_160300) do
     t.integer "rep_increments", limit: 2, default: 1, null: false
     t.integer "set_increments", limit: 2, default: 1, null: false
     t.bigint "profile_id", null: false
+    t.bigint "movement_id", null: false
+    t.decimal "initial_weight", precision: 8, scale: 3, default: "1.0", null: false
+    t.integer "initial_reps", limit: 2, default: 1, null: false
+    t.integer "initial_sets", limit: 2, default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["movement_id"], name: "index_progressions_on_movement_id"
     t.index ["profile_id"], name: "index_progressions_on_profile_id"
   end
 
@@ -86,12 +77,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_160300) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "blocks", "days"
   add_foreign_key "days", "plans"
-  add_foreign_key "movement_plans", "blocks"
-  add_foreign_key "movement_plans", "movements"
-  add_foreign_key "movement_plans", "progressions"
   add_foreign_key "plans", "profiles"
   add_foreign_key "profiles", "users"
+  add_foreign_key "progressions", "movements"
   add_foreign_key "progressions", "profiles"
 end
