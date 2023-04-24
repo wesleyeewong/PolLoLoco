@@ -12,6 +12,7 @@
 #  max_sets          :integer          default(1), not null
 #  min_reps          :integer          default(1), not null
 #  min_sets          :integer          default(1), not null
+#  name              :string           not null
 #  rep_increments    :integer          default(1), not null
 #  set_increments    :integer          default(1), not null
 #  weight_increments :decimal(8, 3)    default(2.5), not null
