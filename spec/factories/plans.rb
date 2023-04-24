@@ -5,6 +5,7 @@
 # Table name: plans
 #
 #  id         :bigint           not null, primary key
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  profile_id :bigint           not null
@@ -20,5 +21,6 @@
 FactoryBot.define do
   factory :plan do
     profile { nil }
+    name { "Plan Name" }
   end
 end

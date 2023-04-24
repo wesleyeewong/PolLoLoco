@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_202913) do
 
   create_table "plans", force: :cascade do |t|
     t.bigint "profile_id", null: false
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_plans_on_profile_id"
@@ -51,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_202913) do
   end
 
   create_table "progressions", force: :cascade do |t|
+    t.string "name", null: false
     t.integer "min_sets", limit: 2, default: 1, null: false
     t.integer "max_sets", limit: 2, default: 1, null: false
     t.integer "min_reps", limit: 2, default: 1, null: false
