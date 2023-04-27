@@ -16,4 +16,5 @@
 #
 class User < ApplicationRecord
   has_one :profile, dependent: :destroy
+  has_many :refresh_tokens, dependent: :destroy
 end

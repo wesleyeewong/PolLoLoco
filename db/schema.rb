@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_29_202913) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_24_211903) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_202913) do
     t.index ["profile_id"], name: "index_progressions_on_profile_id"
   end
 
+  create_table "refresh_tokens", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "jti"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["jti"], name: "index_refresh_tokens_on_jti", unique: true
+    t.index ["user_id"], name: "index_refresh_tokens_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "name", null: false
@@ -84,4 +93,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_202913) do
   add_foreign_key "profiles", "users"
   add_foreign_key "progressions", "movements"
   add_foreign_key "progressions", "profiles"
+  add_foreign_key "refresh_tokens", "users"
 end
