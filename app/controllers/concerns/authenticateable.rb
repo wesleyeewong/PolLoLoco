@@ -8,7 +8,7 @@ module Authenticateable
     before_action :authenticate_user
 
     rescue_from JWT::ExpiredSignature, JWT::InvalidJtiError, JWT::DecodeError, JWT::VerificationError,
-      with: proc { head :unauthorized }
+                with: proc { head :unauthorized }
   end
 
   private
@@ -21,7 +21,6 @@ module Authenticateable
     decoded_token = Jwt::Decoder.call(authorization_token)
 
     @current_user = User.find(decoded_token.fetch(:user_id))
-
   rescue ActiveRecord::RecordNotFound
     head :unauthorized
   end

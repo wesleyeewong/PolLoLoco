@@ -14,7 +14,7 @@ module Jwt
     end
 
     def verify_jti(user_id, jti)
-      RefreshToken.where(user_id: user_id, jti: jti).any?
+      RefreshToken.where(user_id:, jti:).any?
     end
   end
 end

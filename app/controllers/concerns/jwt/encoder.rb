@@ -7,7 +7,7 @@ module Jwt
     def call(user_id, refresh_token = nil)
       time = Time.now.to_i
       payload = {
-        user_id: user_id,
+        user_id:,
         exp: time + Jwt::Meta::ACCESS_EXP
       }
 

@@ -8,7 +8,7 @@ class AccessTokensController < ApplicationController
 
     old_refresh_token.destroy!
 
-    render json: { access_token: access_token, refresh_token: new_refresh_token }, status: :created
+    render json: { access_token:, refresh_token: new_refresh_token }, status: :created
   end
 
   private

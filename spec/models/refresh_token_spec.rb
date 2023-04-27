@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: refresh_tokens
@@ -17,8 +19,10 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe RefreshToken, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has valid factory" do
+    expect(build(:refresh_token).valid?).to be(true)
+  end
 end
