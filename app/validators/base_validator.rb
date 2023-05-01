@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BaseValidator
   include ActiveModel::Validations
 

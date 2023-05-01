@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlanSerializer
   attr_reader :plan
 
@@ -5,7 +7,7 @@ class PlanSerializer
     @plan = plan
   end
 
-  def call 
+  def call
     plan.as_json(
       only: %i[name id],
       include: {

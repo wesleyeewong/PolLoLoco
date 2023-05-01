@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RequestHelper
   %i[get post patch put delete].each do |verb|
     define_method(:"authorized_#{verb}") do |user, endpoint, **options|
@@ -10,6 +12,6 @@ module RequestHelper
   end
 
   def authorization_header(user)
-    {Authorization: "Bearer #{Jwt::Encoder.call(user.id)}"}
+    { Authorization: "Bearer #{Jwt::Encoder.call(user.id)}" }
   end
 end

@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe PlanValidator, type: :validator do
   subject { described_class.new(params) }
-  let(:params) {
+  let(:params) do
     ActionController::Parameters.new(
       {
-        name: name,
-        days: days
+        name:,
+        days:
       }
     )
-  }
+  end
   let(:name) { "Genesis" }
-  let(:days) { [{progression_ids: [1]}] }
+  let(:days) { [{ progression_ids: [1] }] }
 
   context "when valid" do
     it "returns true" do
@@ -31,7 +33,7 @@ RSpec.describe PlanValidator, type: :validator do
         subject.call
 
         expect(subject.errors.count).to eq(1)
-        expect(subject.errors.first.attribute). to eq(:name)
+        expect(subject.errors.first.attribute).to eq(:name)
       end
     end
 

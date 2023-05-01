@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlansController < ApplicationController
   def create
     validator = PlanValidator.new(create_params)

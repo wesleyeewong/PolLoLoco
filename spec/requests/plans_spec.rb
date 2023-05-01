@@ -1,18 +1,20 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "Plans", type: :request do
   let(:profile) { create(:profile) }
   let(:user) { profile.user }
-  let(:progression) { create(:progression, profile: profile) }
+  let(:progression) { create(:progression, profile:) }
 
   describe "POST /plans" do
     let(:endpoint) { "/plans" }
-    let(:params) { {name: "Genesis", days: days} }
-    let(:days) { [{progression_ids: [progression.id]}] }
+    let(:params) { { name: "Genesis", days: } }
+    let(:days) { [{ progression_ids: [progression.id] }] }
 
     context "when invalid params" do
       context "missing plan name" do
-        let(:params) { {name: "", days: days} }
+        let(:params) { { name: "", days: } }
 
         it "returns unprocessable entity, with error message" do
           authorized_post(user, endpoint, params:)
@@ -34,7 +36,7 @@ RSpec.describe "Plans", type: :request do
       end
 
       context "non existing progression" do
-        let(:days) { [{progression_ids: [-404]}] }
+        let(:days) { [{ progression_ids: [-404] }] }
 
         it "returns not found" do
           authorized_post(user, endpoint, params:)
@@ -55,7 +57,7 @@ RSpec.describe "Plans", type: :request do
         expect(profile.plan).to eq(nil)
         expect do
           authorized_post(user, endpoint, params:)
-        end.to change { Plan.count }. by 1
+        end.to change { Plan.count }.by 1
 
         profile.reload
 
