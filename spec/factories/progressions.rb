@@ -45,5 +45,6 @@ FactoryBot.define do
     rep_increments { 1 }
     set_increments { 1 }
     association :movement
+    association :profile
   end
 end

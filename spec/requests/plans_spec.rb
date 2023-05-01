@@ -2,12 +2,12 @@
 
 require "rails_helper"
 
-RSpec.describe "Plans", type: :request do
+RSpec.describe "/plans", type: :request do
   let(:profile) { create(:profile) }
   let(:user) { profile.user }
   let(:progression) { create(:progression, profile:) }
 
-  describe "POST /plans" do
+  describe "POST /" do
     let(:endpoint) { "/plans" }
     let(:params) { { name: "Genesis", days: } }
     let(:days) { [{ progression_ids: [progression.id] }] }
