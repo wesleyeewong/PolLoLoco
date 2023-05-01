@@ -20,7 +20,8 @@ module Authenticateable
   def authenticate_user
     decoded_token = Jwt::Decoder.call(authorization_token)
 
-    @current_user = User.find(decoded_token.fetch(:user_id))
+    Current.user = User.includes(:profile).find(decoded_token.fetch(:user_id))
+    Current.profile = Current.user.profile
   rescue ActiveRecord::RecordNotFound
     head :unauthorized
   end

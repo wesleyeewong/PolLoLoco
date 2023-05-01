@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :access_tokens, only: [:create]
+
+  resources :plans, only: [:create]
 end
