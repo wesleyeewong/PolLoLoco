@@ -20,4 +20,6 @@
 #
 class Plan < ApplicationRecord
   belongs_to :profile
+
+  has_many :days, dependent: :destroy
 end
