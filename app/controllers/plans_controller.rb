@@ -5,8 +5,8 @@ class PlansController < ApplicationController
     validator = PlanValidator.new(create_params)
 
     if validator.call
-      plan = Current.user.profile.create_plan(name: create_params[:name])
-      plan.days.create(create_params[:days])
+      plan = Current.profile.create_plan!(name: create_params[:name])
+      plan.days.create!(create_params[:days])
 
       render json: PlanSerializer.new(plan).call, status: :created
     else

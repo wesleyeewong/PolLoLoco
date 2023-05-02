@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
-class PlanSerializer
-  attr_reader :plan
-
-  def initialize(plan)
-    @plan = plan
-  end
-
+class PlanSerializer < BaseSerializer
   def call
     plan.as_json(
       only: %i[name id],

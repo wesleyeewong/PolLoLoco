@@ -2,21 +2,23 @@
 
 require "rails_helper"
 
-RSpec.describe "Plans", type: :request do
+RSpec.describe "/plans", type: :request do
   let(:profile) { create(:profile) }
   let(:user) { profile.user }
   let(:progression) { create(:progression, profile:) }
+  let(:endpoint) { "/plans" }
 
-  describe "POST /plans" do
-    let(:endpoint) { "/plans" }
+  describe "POST /" do
     let(:params) { { name: "Genesis", days: } }
     let(:days) { [{ progression_ids: [progression.id] }] }
+
+    it_behaves_like(:authenticateable, verb: :post, endpoint: "/plans")
 
     context "when invalid params" do
       context "missing plan name" do
         let(:params) { { name: "", days: } }
 
-        it "returns unprocessable entity, with error message" do
+        it "returns unprocessable entity with error message" do
           authorized_post(user, endpoint, params:)
 
           expect(response).to have_http_status(:unprocessable_entity)

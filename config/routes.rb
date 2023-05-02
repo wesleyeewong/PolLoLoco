@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :access_tokens, only: [:create]
 
   resources :plans, only: [:create]
+  resources :progressions, only: %i[create index]
 end
