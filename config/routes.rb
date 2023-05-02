@@ -10,4 +10,5 @@ Rails.application.routes.draw do
 
   resources :plans, only: [:create]
   resources :progressions, only: %i[create index]
+  resources :movements, only: [:index]
 end
