@@ -24,4 +24,5 @@ class Profile < ApplicationRecord
   has_one :plan, dependent: :destroy
 
   has_many :progressions, dependent: :destroy
+  has_many :day_assignments, dependent: :destroy
 end

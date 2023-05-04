@@ -10,9 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_24_211903) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_04_121611) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "completed_sets", force: :cascade do |t|
+    t.integer "reps", limit: 2, null: false
+    t.decimal "weight", precision: 8, scale: 3, null: false
+    t.bigint "progression_assignment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["progression_assignment_id"], name: "index_completed_sets_on_progression_assignment_id"
+  end
+
+  create_table "day_assignments", force: :cascade do |t|
+    t.bigint "day_id"
+    t.bigint "plan_id"
+    t.bigint "profile_id", null: false
+    t.datetime "completed_at"
+    t.integer "completion", limit: 2, default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["day_id"], name: "index_day_assignments_on_day_id"
+    t.index ["plan_id"], name: "index_day_assignments_on_plan_id"
+    t.index ["profile_id"], name: "index_day_assignments_on_profile_id"
+  end
 
   create_table "days", force: :cascade do |t|
     t.bigint "plan_id", null: false
@@ -49,6 +71,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_211903) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "progression_assignments", force: :cascade do |t|
+    t.bigint "progression_id"
+    t.bigint "day_assignment_id", null: false
+    t.integer "reps", limit: 2, null: false
+    t.integer "sets", limit: 2, null: false
+    t.integer "rpe", limit: 2, default: 0, null: false
+    t.decimal "weight", precision: 8, scale: 3, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["day_assignment_id"], name: "index_progression_assignments_on_day_assignment_id"
+    t.index ["progression_id"], name: "index_progression_assignments_on_progression_id"
   end
 
   create_table "progressions", force: :cascade do |t|
@@ -88,9 +123,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_211903) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "completed_sets", "progression_assignments"
+  add_foreign_key "day_assignments", "days"
+  add_foreign_key "day_assignments", "plans"
+  add_foreign_key "day_assignments", "profiles"
   add_foreign_key "days", "plans"
   add_foreign_key "plans", "profiles"
   add_foreign_key "profiles", "users"
+  add_foreign_key "progression_assignments", "day_assignments"
+  add_foreign_key "progression_assignments", "progressions"
   add_foreign_key "progressions", "movements"
   add_foreign_key "progressions", "profiles"
   add_foreign_key "refresh_tokens", "users"

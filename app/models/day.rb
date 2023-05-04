@@ -20,5 +20,7 @@
 class Day < ApplicationRecord
   belongs_to :plan
 
+  has_many :day_assignments, dependent: :nullify
+
   has_and_belongs_to_many :progressions
 end

@@ -20,7 +20,7 @@
 #
 FactoryBot.define do
   factory :plan do
-    profile { nil }
+    association :profile
     name { "Plan Name" }
   end
 end

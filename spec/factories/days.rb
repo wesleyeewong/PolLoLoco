@@ -19,6 +19,6 @@
 #
 FactoryBot.define do
   factory :day do
-    plan { nil }
+    association :plan
   end
 end

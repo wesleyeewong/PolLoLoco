@@ -22,4 +22,5 @@ class Plan < ApplicationRecord
   belongs_to :profile
 
   has_many :days, dependent: :destroy
+  has_many :day_assignemtns, dependent: :nullify
 end
