@@ -4,12 +4,13 @@
 #
 # Table name: day_assignments
 #
-#  id         :bigint           not null, primary key
-#  completion :integer          not null, is an Array
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  day_id     :bigint           not null
-#  plan_id    :bigint           not null
+#  id           :bigint           not null, primary key
+#  completed_at :datetime
+#  completion   :integer          not null, is an Array
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  day_id       :bigint
+#  plan_id      :bigint
 #
 # Indexes
 #
@@ -24,5 +25,4 @@
 require "rails_helper"
 
 RSpec.describe DayAssignment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
 end

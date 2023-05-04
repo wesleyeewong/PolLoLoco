@@ -6,12 +6,13 @@
 #
 #  id                :bigint           not null, primary key
 #  reps              :integer          not null
+#  rpe               :integer          default(0), not null
 #  sets              :integer          not null
 #  weight            :decimal(8, 3)    not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  day_assignment_id :bigint           not null
-#  progression_id    :bigint           not null
+#  progression_id    :bigint
 #
 # Indexes
 #
@@ -26,5 +27,4 @@
 require "rails_helper"
 
 RSpec.describe ProgressionAssignment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
 end

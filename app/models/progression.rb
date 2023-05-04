@@ -35,6 +35,8 @@ class Progression < ApplicationRecord
   belongs_to :profile
   belongs_to :movement
 
+  has_many :progression_assignments, dependent: :nullify
+
   has_and_belongs_to_many :days
 
   validates :weight_increments, format: { with: /\A\d{1,5}(\.\d{1,3})?\z/ }

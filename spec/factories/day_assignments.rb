@@ -4,12 +4,13 @@
 #
 # Table name: day_assignments
 #
-#  id         :bigint           not null, primary key
-#  completion :integer          not null, is an Array
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  day_id     :bigint           not null
-#  plan_id    :bigint           not null
+#  id           :bigint           not null, primary key
+#  completed_at :datetime
+#  completion   :integer          not null, is an Array
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  day_id       :bigint
+#  plan_id      :bigint
 #
 # Indexes
 #
@@ -23,8 +24,9 @@
 #
 FactoryBot.define do
   factory :day_assignment do
-    day { nil }
-    plan { nil }
-    completion { 1 }
+    association :day
+    association :plan
+    completion { [0] }
+    completed_at { nil }
   end
 end

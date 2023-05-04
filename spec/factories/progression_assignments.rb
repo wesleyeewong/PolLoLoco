@@ -6,12 +6,13 @@
 #
 #  id                :bigint           not null, primary key
 #  reps              :integer          not null
+#  rpe               :integer          default(0), not null
 #  sets              :integer          not null
 #  weight            :decimal(8, 3)    not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  day_assignment_id :bigint           not null
-#  progression_id    :bigint           not null
+#  progression_id    :bigint
 #
 # Indexes
 #
@@ -25,10 +26,11 @@
 #
 FactoryBot.define do
   factory :progression_assignment do
-    progression { nil }
-    day_assignment { nil }
+    association :progression
+    association :day_assignment
     reps { 1 }
     sets { 1 }
-    weight { "9.99" }
+    rpe { 1 }
+    weight { 10 }
   end
 end

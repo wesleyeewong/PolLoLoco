@@ -24,20 +24,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_121611) do
   end
 
   create_table "day_assignments", force: :cascade do |t|
-    t.bigint "day_id", null: false
-    t.bigint "plan_id", null: false
+    t.bigint "day_id"
+    t.bigint "plan_id"
+    t.datetime "completed_at"
     t.integer "completion", limit: 2, null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["day_id"], name: "index_day_assignments_on_day_id"
     t.index ["plan_id"], name: "index_day_assignments_on_plan_id"
-  end
-
-  create_table "day_assignments_progression_assignments", force: :cascade do |t|
-    t.bigint "day_assignment_id"
-    t.bigint "progression_assignment_id"
-    t.index ["day_assignment_id"], name: "index_dapa_on_da_id"
-    t.index ["progression_assignment_id"], name: "index_dapa_on_pa_id"
   end
 
   create_table "days", force: :cascade do |t|
@@ -78,10 +72,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_121611) do
   end
 
   create_table "progression_assignments", force: :cascade do |t|
-    t.bigint "progression_id", null: false
+    t.bigint "progression_id"
     t.bigint "day_assignment_id", null: false
     t.integer "reps", limit: 2, null: false
     t.integer "sets", limit: 2, null: false
+    t.integer "rpe", limit: 2, default: 0, null: false
     t.decimal "weight", precision: 8, scale: 3, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
