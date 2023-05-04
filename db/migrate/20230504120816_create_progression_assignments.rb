@@ -11,8 +11,8 @@ class CreateProgressionAssignments < ActiveRecord::Migration[7.0]
     end
 
     create_table :day_assignments_progression_assignments do |t|
-      t.belongs_to :day_assignment
-      t.belongs_to :progression_assignment
+      t.belongs_to :day_assignment, index: { name: :index_dapa_on_da_id }
+      t.belongs_to :progression_assignment, index: { name: :index_dapa_on_pa_id }
     end
   end
 end

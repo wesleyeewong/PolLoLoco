@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_04_115604) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_04_120816) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_115604) do
     t.datetime "updated_at", null: false
     t.index ["day_id"], name: "index_day_assignments_on_day_id"
     t.index ["plan_id"], name: "index_day_assignments_on_plan_id"
+  end
+
+  create_table "day_assignments_progression_assignments", force: :cascade do |t|
+    t.bigint "day_assignment_id"
+    t.bigint "progression_assignment_id"
+    t.index ["day_assignment_id"], name: "index_dapa_on_da_id"
+    t.index ["progression_assignment_id"], name: "index_dapa_on_pa_id"
   end
 
   create_table "days", force: :cascade do |t|
@@ -59,6 +66,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_115604) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "progression_assignments", force: :cascade do |t|
+    t.bigint "progression_id", null: false
+    t.bigint "day_assignment_id", null: false
+    t.integer "reps", limit: 2, null: false
+    t.integer "sets", limit: 2, null: false
+    t.decimal "weight", precision: 8, scale: 3, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["day_assignment_id"], name: "index_progression_assignments_on_day_assignment_id"
+    t.index ["progression_id"], name: "index_progression_assignments_on_progression_id"
   end
 
   create_table "progressions", force: :cascade do |t|
@@ -103,6 +122,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_115604) do
   add_foreign_key "days", "plans"
   add_foreign_key "plans", "profiles"
   add_foreign_key "profiles", "users"
+  add_foreign_key "progression_assignments", "day_assignments"
+  add_foreign_key "progression_assignments", "progressions"
   add_foreign_key "progressions", "movements"
   add_foreign_key "progressions", "profiles"
   add_foreign_key "refresh_tokens", "users"
