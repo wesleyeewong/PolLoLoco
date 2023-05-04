@@ -26,12 +26,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_121611) do
   create_table "day_assignments", force: :cascade do |t|
     t.bigint "day_id"
     t.bigint "plan_id"
+    t.bigint "profile_id", null: false
     t.datetime "completed_at"
     t.integer "completion", limit: 2, default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["day_id"], name: "index_day_assignments_on_day_id"
     t.index ["plan_id"], name: "index_day_assignments_on_plan_id"
+    t.index ["profile_id"], name: "index_day_assignments_on_profile_id"
   end
 
   create_table "days", force: :cascade do |t|
@@ -124,6 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_121611) do
   add_foreign_key "completed_sets", "progression_assignments"
   add_foreign_key "day_assignments", "days"
   add_foreign_key "day_assignments", "plans"
+  add_foreign_key "day_assignments", "profiles"
   add_foreign_key "days", "plans"
   add_foreign_key "plans", "profiles"
   add_foreign_key "profiles", "users"
