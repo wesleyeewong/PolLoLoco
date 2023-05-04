@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_24_211903) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_04_115604) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "day_assignments", force: :cascade do |t|
+    t.bigint "day_id", null: false
+    t.bigint "plan_id", null: false
+    t.integer "completion", limit: 2, null: false, array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["day_id"], name: "index_day_assignments_on_day_id"
+    t.index ["plan_id"], name: "index_day_assignments_on_plan_id"
+  end
 
   create_table "days", force: :cascade do |t|
     t.bigint "plan_id", null: false
@@ -88,6 +98,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_211903) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "day_assignments", "days"
+  add_foreign_key "day_assignments", "plans"
   add_foreign_key "days", "plans"
   add_foreign_key "plans", "profiles"
   add_foreign_key "profiles", "users"
