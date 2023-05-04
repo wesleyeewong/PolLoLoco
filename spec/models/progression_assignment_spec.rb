@@ -27,4 +27,5 @@
 require "rails_helper"
 
 RSpec.describe ProgressionAssignment, type: :model do
+  # TODO: add specs later when needed
 end

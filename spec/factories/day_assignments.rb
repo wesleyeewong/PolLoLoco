@@ -6,7 +6,7 @@
 #
 #  id           :bigint           not null, primary key
 #  completed_at :datetime
-#  completion   :integer          not null, is an Array
+#  completion   :integer          default(0), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  day_id       :bigint
@@ -26,7 +26,7 @@ FactoryBot.define do
   factory :day_assignment do
     association :day
     association :plan
-    completion { [0] }
+    completion { :zero }
     completed_at { nil }
   end
 end

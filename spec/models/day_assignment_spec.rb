@@ -6,7 +6,7 @@
 #
 #  id           :bigint           not null, primary key
 #  completed_at :datetime
-#  completion   :integer          not null, is an Array
+#  completion   :integer          default(0), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  day_id       :bigint
@@ -25,4 +25,5 @@
 require "rails_helper"
 
 RSpec.describe DayAssignment, type: :model do
+  # TODO: add specs later when needed
 end

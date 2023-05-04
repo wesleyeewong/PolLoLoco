@@ -22,4 +22,5 @@
 require "rails_helper"
 
 RSpec.describe CompletedSet, type: :model do
+  # TODO: add specs later when needed
 end

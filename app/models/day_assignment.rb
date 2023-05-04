@@ -6,7 +6,7 @@
 #
 #  id           :bigint           not null, primary key
 #  completed_at :datetime
-#  completion   :integer          not null, is an Array
+#  completion   :integer          default(0), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  day_id       :bigint
@@ -27,4 +27,12 @@ class DayAssignment < ApplicationRecord
   belongs_to :plan
 
   has_many :progression_assignemnts, dependent: :destroy
+
+  COMPLETION_ENUM = {
+    zero: 0,
+    partial: 1,
+    full: 2
+  }.freeze
+
+  enum completion: COMPLETION_ENUM
 end

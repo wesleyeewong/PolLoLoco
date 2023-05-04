@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_121611) do
     t.bigint "day_id"
     t.bigint "plan_id"
     t.datetime "completed_at"
-    t.integer "completion", limit: 2, null: false, array: true
+    t.integer "completion", limit: 2, default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["day_id"], name: "index_day_assignments_on_day_id"
