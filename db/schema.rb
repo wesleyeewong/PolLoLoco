@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_04_120816) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_04_121611) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "completed_sets", force: :cascade do |t|
+    t.integer "reps", limit: 2, null: false
+    t.decimal "weight", precision: 8, scale: 3, null: false
+    t.bigint "progression_assignment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["progression_assignment_id"], name: "index_completed_sets_on_progression_assignment_id"
+  end
 
   create_table "day_assignments", force: :cascade do |t|
     t.bigint "day_id", null: false
@@ -117,6 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_120816) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "completed_sets", "progression_assignments"
   add_foreign_key "day_assignments", "days"
   add_foreign_key "day_assignments", "plans"
   add_foreign_key "days", "plans"
