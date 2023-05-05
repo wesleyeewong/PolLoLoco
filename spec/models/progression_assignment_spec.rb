@@ -29,7 +29,7 @@ require "rails_helper"
 RSpec.describe ProgressionAssignment, type: :model do
   describe "#next_progression_hash" do
     context "when progressable" do
-      let(:progression_assignment) { create(:progression_assignment, :progressable, progression: progression) }
+      let(:progression_assignment) { create(:progression_assignment, :progressable, progression:) }
 
       context "rep progression" do
         let(:progression) { create(:progression, max_reps: 2) }

@@ -22,7 +22,7 @@ class Plan < ApplicationRecord
   belongs_to :profile
 
   has_many :days, dependent: :destroy
-  has_many :day_assignments , dependent: :nullify
+  has_many :day_assignments, dependent: :nullify
 
   def next_day(day)
     days_array = days.to_a

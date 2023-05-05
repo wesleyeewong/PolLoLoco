@@ -71,7 +71,7 @@ class ProgressionAssignment < ApplicationRecord
   end
 
   def total_completed_weight
-    @total_completed_weight ||= completed_sets.to_a.sum(0) do |cs|
+    @total_completed_weight ||= completed_sets.to_a.sum do |cs|
       weight = cs.weight.zero? ? 1 : cs.weight
       weight * cs.reps
     end

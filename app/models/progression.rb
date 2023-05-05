@@ -38,7 +38,7 @@ class Progression < ApplicationRecord
   has_many :progression_assignments, dependent: :nullify
 
   has_one :last_progression_assignment, -> { order(created_at: :desc) },
-    required: false, class_name: :ProgressionAssignment
+          required: false, class_name: :ProgressionAssignment
 
   has_and_belongs_to_many :days
 

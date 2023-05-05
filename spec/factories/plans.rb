@@ -25,13 +25,13 @@ FactoryBot.define do
 
     trait :with_days do
       after(:create) do |plan|
-        2.times { create(:day, plan: plan) }
+        2.times { create(:day, plan:) }
       end
     end
 
     trait :with_days_and_progressions do
       after(:create) do |plan|
-        2.times { create(:day, :with_progressions, plan: plan) }
+        2.times { create(:day, :with_progressions, plan:) }
       end
     end
   end

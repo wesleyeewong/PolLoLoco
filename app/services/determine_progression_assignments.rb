@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DetermineProgressionAssignments
   def initialize(day_assignment)
     @day_assignment = day_assignment
@@ -27,8 +29,8 @@ class DetermineProgressionAssignments
 
   def progressions
     @progressions ||= Progression
-      .joins(:days)
-      .includes(:movement, last_progression_assignment: [:completed_sets])
-      .where(profile: Current.profile, days: [day_assignment.day])
+                      .joins(:days)
+                      .includes(:movement, last_progression_assignment: [:completed_sets])
+                      .where(profile: Current.profile, days: [day_assignment.day])
   end
 end

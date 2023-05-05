@@ -43,14 +43,12 @@ FactoryBot.define do
       after(:create) do |pa|
         pa.sets.times { create(:completed_set, weight: pa.weight, reps: pa.reps - 1, progression_assignment: pa) }
       end
-
     end
 
     trait :unprogressable_by_weight do
       after(:create) do |pa|
         pa.sets.times { create(:completed_set, weight: pa.weight - 1, reps: pa.reps, progression_assignment: pa) }
       end
-
     end
   end
 end
