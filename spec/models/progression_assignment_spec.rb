@@ -27,5 +27,86 @@
 require "rails_helper"
 
 RSpec.describe ProgressionAssignment, type: :model do
-  # TODO: add specs later when needed
+  describe "#next_progression_hash" do
+    context "when progressable" do
+      let(:progression_assignment) { create(:progression_assignment, :progressable, progression: progression) }
+
+      context "rep progression" do
+        let(:progression) { create(:progression, max_reps: 2) }
+
+        it "progresses reps only" do
+          expect(progression_assignment.next_progression_hash).to eq(
+            {
+              reps: progression_assignment.reps + progression.rep_increments,
+              sets: progression_assignment.sets,
+              weight: progression_assignment.weight,
+              progression_id: progression.id
+            }
+          )
+        end
+      end
+
+      context "set progression" do
+        let(:progression) { create(:progression, max_sets: 2) }
+
+        it "progresses sets only" do
+          expect(progression_assignment.next_progression_hash).to eq(
+            {
+              reps: progression_assignment.reps,
+              sets: progression_assignment.sets + progression.set_increments,
+              weight: progression_assignment.weight,
+              progression_id: progression.id
+            }
+          )
+        end
+      end
+
+      context "weight progression" do
+        let(:progression) { create(:progression) }
+
+        it "progresses weiht only" do
+          expect(progression_assignment.next_progression_hash).to eq(
+            {
+              reps: progression_assignment.reps,
+              sets: progression_assignment.sets,
+              weight: progression_assignment.weight + progression.weight_increments,
+              progression_id: progression.id
+            }
+          )
+        end
+      end
+    end
+
+    context "when not progressable" do
+      context "by insufficient reps" do
+        let(:progression_assignment) { create(:progression_assignment, :unprogressable_by_reps) }
+
+        it "returns hash with no progress" do
+          expect(progression_assignment.next_progression_hash).to eq(
+            {
+              reps: progression_assignment.reps,
+              sets: progression_assignment.sets,
+              weight: progression_assignment.weight,
+              progression_id: progression_assignment.progression.id
+            }
+          )
+        end
+      end
+
+      context "by insufficient weight" do
+        let(:progression_assignment) { create(:progression_assignment, :unprogressable_by_weight) }
+
+        it "returns hash with no progress" do
+          expect(progression_assignment.next_progression_hash).to eq(
+            {
+              reps: progression_assignment.reps,
+              sets: progression_assignment.sets,
+              weight: progression_assignment.weight,
+              progression_id: progression_assignment.progression.id
+            }
+          )
+        end
+      end
+    end
+  end
 end

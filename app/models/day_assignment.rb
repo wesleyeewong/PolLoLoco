@@ -30,7 +30,7 @@ class DayAssignment < ApplicationRecord
   belongs_to :day
   belongs_to :plan
 
-  has_many :progression_assignemnts, dependent: :destroy
+  has_many :progression_assignments, dependent: :destroy
 
   COMPLETION_ENUM = {
     zero: 0,
@@ -38,5 +38,26 @@ class DayAssignment < ApplicationRecord
     full: 2
   }.freeze
 
-  enum completion: COMPLETION_ENUM
+  enum :completion, COMPLETION_ENUM, suffix: true
+
+  def for_current_day?
+    case completion.to_sym
+    when :zero
+      true
+    when :partial
+      true
+    when :full
+      completed_today?
+    else
+      false
+    end
+  end
+
+  private
+
+  def completed_today?
+    return false unless completed_at
+
+    Date.today === completed_at.to_date
+  end
 end

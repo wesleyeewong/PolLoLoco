@@ -37,6 +37,9 @@ class Progression < ApplicationRecord
 
   has_many :progression_assignments, dependent: :nullify
 
+  has_one :last_progression_assignment, -> { order(created_at: :desc) },
+    required: false, class_name: :ProgressionAssignment
+
   has_and_belongs_to_many :days
 
   validates :weight_increments, format: { with: /\A\d{1,5}(\.\d{1,3})?\z/ }
