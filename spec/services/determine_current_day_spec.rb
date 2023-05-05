@@ -69,7 +69,7 @@ RSpec.describe DetermineCurrentDay, type: :service do
       let!(:last_day_assignment) do
         create(
           :day_assignment, :full_completion,
-          profile:, plan:, day: plan.days.first, completed_at: Time.current - 5.days
+          profile:, plan:, day: plan.days.first, completed_at: 5.days.ago
         )
       end
 

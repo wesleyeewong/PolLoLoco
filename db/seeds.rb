@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveRecord::Migration.say_with_time("Seeding movements ...") do
-  movement_slugs = YAML.load_file(Rails.root.join("db", "seeds", "movements.yml"))
+  movement_slugs = YAML.load_file(Rails.root.join("db/seeds/movements.yml"))
   @movements = Movement.create!(movement_slugs.map { |slug| { slug: } })
 end
 
