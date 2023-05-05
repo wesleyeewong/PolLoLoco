@@ -7,7 +7,7 @@ on:
   push:
 
 jobs:
-  rspec-tests:
+  rspec-and-rubocop:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -35,17 +35,6 @@ jobs:
 
       - name: Run rspec
         run: bundle exec rspec
-
-  rubocop:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Install Ruby & gems
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
 
       - name: Run rubocop
         run: bundle exec rubocop

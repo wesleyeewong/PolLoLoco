@@ -4,6 +4,7 @@ AllCops:
   NewCops: enable
   Exclude:
     - "/**/schema.rb"
+    - "vendor/**/*"
 
 Layout/HashAlignment:
   Enabled: false
