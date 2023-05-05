@@ -3,7 +3,7 @@
 class PlanSerializer < BaseSerializer
   def call
     plan.as_json(
-      only: %i(name id),
+      only: %i[name id],
       include: {
         days: {
           only: [],

@@ -42,9 +42,7 @@ class DayAssignment < ApplicationRecord
 
   def for_current_day?
     case completion.to_sym
-    when :zero
-      true
-    when :partial
+    when :zero, :partial
       true
     when :full
       completed_today?
@@ -58,6 +56,6 @@ class DayAssignment < ApplicationRecord
   def completed_today?
     return false unless completed_at
 
-    Date.today === completed_at.to_date
+    Date.today == completed_at.to_date
   end
 end

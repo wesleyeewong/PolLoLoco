@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe DetermineCurrentDay, type: :service do
@@ -6,7 +8,7 @@ RSpec.describe DetermineCurrentDay, type: :service do
 
     Current.profile
   end
-  let!(:plan) { create(:plan, :with_days, profile: profile) }
+  let!(:plan) { create(:plan, :with_days, profile:) }
 
   describe "#call" do
     subject { described_class.new }
@@ -47,7 +49,6 @@ RSpec.describe DetermineCurrentDay, type: :service do
           expect(day_assignment.new_record?).to eq(false)
           expect(day_assignment).to eq(last_day_assignment)
         end
-
       end
 
       context "by same day completion" do
@@ -61,7 +62,6 @@ RSpec.describe DetermineCurrentDay, type: :service do
           expect(day_assignment.new_record?).to eq(false)
           expect(day_assignment).to eq(last_day_assignment)
         end
-
       end
     end
 

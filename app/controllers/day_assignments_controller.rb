@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DayAssignmentsController < ApplicationController
   def current_day
     return head(:no_content) if Current.profile.plan.nil? || Current.profile.plan.days.count.zero?

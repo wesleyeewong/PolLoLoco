@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DetermineCurrentDay
   def call
     return new_day_assignment if build_new_day_assignment?
@@ -22,8 +24,7 @@ class DetermineCurrentDay
   def genesis
     @genesis ||= last_day_assignment.nil?
   end
-  alias_method :genesis?, :genesis
-
+  alias genesis? genesis
 
   def profile
     Current.profile
