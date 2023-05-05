@@ -21,6 +21,8 @@ class CreateProgressions < ActiveRecord::Migration[7.0]
     create_table :days_progressions do |t|
       t.belongs_to :day
       t.belongs_to :progression
+
+      t.timestamps
     end
   end
 end

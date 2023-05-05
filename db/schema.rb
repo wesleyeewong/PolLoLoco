@@ -46,6 +46,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_121611) do
   create_table "days_progressions", force: :cascade do |t|
     t.bigint "day_id"
     t.bigint "progression_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["day_id"], name: "index_days_progressions_on_day_id"
     t.index ["progression_id"], name: "index_days_progressions_on_progression_id"
   end

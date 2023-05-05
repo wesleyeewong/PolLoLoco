@@ -56,6 +56,6 @@ class DayAssignment < ApplicationRecord
   def completed_today?
     return false unless completed_at
 
-    Date.today == completed_at.to_date
+    Time.zone.today == completed_at.to_date
   end
 end
