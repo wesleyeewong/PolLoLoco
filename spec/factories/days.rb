@@ -20,5 +20,11 @@
 FactoryBot.define do
   factory :day do
     association :plan
+
+    trait :with_progressions do
+      after(:create) do |day|
+        2.times { create(:progression, days: [day], profile: day.plan.profile) }
+      end
+    end
   end
 end

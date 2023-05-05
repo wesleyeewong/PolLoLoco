@@ -33,7 +33,7 @@
 #
 FactoryBot.define do
   factory :progression do
-    name { "Progression Name" }
+    name { "#{movement.slug} progression" }
     initial_reps { 1 }
     initial_sets { 1 }
     initial_weight { 1 }
@@ -41,10 +41,14 @@ FactoryBot.define do
     max_sets { 1 }
     min_reps { 1 }
     max_reps { 1 }
-    weight_increments { "9.99" }
+    weight_increments { 1 }
     rep_increments { 1 }
     set_increments { 1 }
     association :movement
     association :profile
+  end
+
+  trait :with_rep_progressions do
+    max_reps { 2 }
   end
 end

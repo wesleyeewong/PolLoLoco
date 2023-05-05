@@ -33,4 +33,13 @@ FactoryBot.define do
     completion { :zero }
     completed_at { nil }
   end
+
+  trait :partial_completion do
+    completion { :partial }
+  end
+
+  trait :full_completion do
+    completion { :full }
+    completed_at { Time.current }
+  end
 end

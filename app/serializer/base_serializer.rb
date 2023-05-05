@@ -9,7 +9,7 @@ class BaseSerializer
   private
 
   def object_name
-    @object_name ||= self.class.name.tableize.split("_").first
+    @object_name ||= self.class.name.tableize.delete_suffix!("_serializers")
   end
 
   def object_ivar_name
