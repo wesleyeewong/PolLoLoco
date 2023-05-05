@@ -53,4 +53,5 @@ group :development do
   # gem "spring"
   gem "annotate", require: false
   gem "rubocop", require: false
+  gem "rubocop-rails", require: false
 end
