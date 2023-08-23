@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :access_tokens, only: [:create]
 
-  resources :plans, only: [:create, :index]
+  resources :plans, only: %i[create index]
   resources :progressions, only: %i[create index]
   resources :movements, only: [:index]
 
