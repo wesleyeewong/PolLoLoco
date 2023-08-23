@@ -10,9 +10,7 @@ class BaseValidator
   end
 
   def call
-    return false unless valid?
-
-    true
+    valid?
   end
 
   def read_attribute_for_validation(key)

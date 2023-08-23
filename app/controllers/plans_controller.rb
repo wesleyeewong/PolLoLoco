@@ -14,6 +14,16 @@ class PlansController < ApplicationController
     end
   end
 
+  def index
+    plan = Current.profile.plan
+
+    if plan
+      render json: PlanSerializer.new(plan).call, status: :ok
+    else
+      head :no_content
+    end
+  end
+
   private
 
   def create_params

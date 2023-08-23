@@ -4,7 +4,6 @@ module Authenticateable
   extend ActiveSupport::Concern
 
   included do
-    before_action :ensure_authorization_token_presence
     before_action :authenticate_user
 
     rescue_from JWT::ExpiredSignature, JWT::InvalidJtiError, JWT::DecodeError, JWT::VerificationError,
@@ -13,11 +12,9 @@ module Authenticateable
 
   private
 
-  def ensure_authorization_token_presence
-    raise JWT::VerificationError unless authorization_token
-  end
-
   def authenticate_user
+    raise JWT::VerificationError unless authorization_token
+
     decoded_token = Jwt::Decoder.call(authorization_token)
 
     Current.user = User.includes(:profile).find(decoded_token.fetch(:user_id))

@@ -89,7 +89,7 @@ RSpec.describe "/progressions", type: :request do
         it "returns not found" do
           authorized_post(user, endpoint, params:)
 
-          expect(response).to have_http_status(:not_found)
+          expect(response).to have_http_status(:unprocessable_entity)
         end
       end
     end

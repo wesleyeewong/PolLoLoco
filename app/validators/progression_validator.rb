@@ -15,6 +15,6 @@ class ProgressionValidator < BaseValidator
   private
 
   def movement_existence
-    Movement.find(params[:movement_id])
+    errors.add(:movement, :not_found) if Movement.find_by(id: params[:movement_id]).nil?
   end
 end
