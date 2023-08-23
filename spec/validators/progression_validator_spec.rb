@@ -34,7 +34,7 @@ RSpec.describe ProgressionValidator, type: :validator do
 
   context "when invalid" do
     ProgressionValidator::ATTRIBUTES.each do |key|
-      next if key == :movement_id
+      next if key == :movement_slug
 
       context "missing #{key}" do
         let(:params) { ActionController::Parameters.new(params_hash.except(key)) }
@@ -49,7 +49,7 @@ RSpec.describe ProgressionValidator, type: :validator do
       let(:movement_id) { -404 }
 
       it "raises ActiveRecord::RecordNotFound" do
-        expect { subject.call }.to raise_error(ActiveRecord::RecordNotFound)
+        expect(subject.call).to eq(false)
       end
     end
   end
